@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Missing Number✨</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- زر فتح لوحة الإحصائيات الجانبية -->
+    <button id="stats-toggle-btn" class="settings-trigger" onclick="toggleSidebar()">⚙️</button>
+
+    <!-- اللوحة الجانبية للمستخدم والإحصائيات -->
+    <div id="stats-sidebar" class="sidebar">
+        <div class="sidebar-header">
+            <h3>Player Profile</h3>
+            <button class="close-sidebar-btn" onclick="toggleSidebar()">✕</button>
+        </div>
+        
+        <div class="sidebar-profile">
+            <div class="profile-avatar">👤</div>
+            <div class="profile-name" id="sidebar-player-name">Guest</div>
+        </div>
+
+        <div class="stats-cards-container">
+            <!-- Beginner Card -->
+            <div class="stat-card">
+                <h4>Beginner Level</h4>
+                <div class="stat-row">
+                    <span>Best Time:</span>
+                    <strong id="stat-best-beginner">--</strong>
+                </div>
+                <div class="stat-row">
+                    <span>Attempts:</span>
+                    <strong id="stat-attempts-beginner">0</strong>
+                </div>
+            </div>
+
+            <!-- Medium Card -->
+            <div class="stat-card">
+                <h4>Medium Level</h4>
+                <div class="stat-row">
+                    <span>Best Time:</span>
+                    <strong id="stat-best-medium">--</strong>
+                </div>
+                <div class="stat-row">
+                    <span>Attempts:</span>
+                    <strong id="stat-attempts-medium">0</strong>
+                </div>
+            </div>
+
+            <!-- Hard Card -->
+            <div class="stat-card">
+                <h4>Hard Level</h4>
+                <div class="stat-row">
+                    <span>Best Time:</span>
+                    <strong id="stat-best-hard">--</strong>
+                </div>
+                <div class="stat-row">
+                    <span>Attempts:</span>
+                    <strong id="stat-attempts-hard">0</strong>
+                </div>
+            </div>
+        </div>
+
+        <button class="reset-stats-btn" onclick="resetStats()">Reset All Data</button>
+    </div>
+
+    <!-- طبقة تغطية عند فتح السايدبار -->
+    <div id="sidebar-overlay" class="overlay" onclick="toggleSidebar()"></div>
+
+    <!-- Screen 1: Login -->
+    <div class="game-container" id="login-screen">
+        <h1>MISSING NUMBER</h1>
+        <p class="instruction">ENTER YOUR USERNAME TO BEGIN</p>
+        <input type="text" id="username-input" placeholder="USERNAME..." autocomplete="off">
+        <button class="action-btn start-btn" onclick="login()">START ⚡</button>
+    </div>
+
+    <!-- Screen 2: Instructions & Level Selection -->
+    <div class="game-container" id="instructions-screen">
+        <h1>WELCOME, <span id="player-name-display"></span></h1>
+        <div class="instruction-box">
+            <h3>SPEED CHALLENGE</h3>
+            <p>Clear 5 continuous stages before the total timer hits zero. Each correct selection immediately loads the next stage. Keep focus and react instantly.</p>
+        </div>
+        <div id="level-selection">
+            <button class="level-btn" onclick="startGame(5, 30, 'beginner')">BEGINNER (1-5 | 30s)</button>
+            <button class="level-btn" onclick="startGame(7, 40, 'medium')">MEDIUM (1-7 | 40s)</button>
+            <button class="level-btn" onclick="startGame(12, 50, 'hard')">HARD (1-12 | 50s)</button>
+        </div>
+    </div>
+
+    <!-- Screen 3: Gameplay -->
+    <div class="game-container" id="game-screen">
+        <div class="game-header">
+            <div class="timer">TIME: <span id="time-display">30</span>s</div>
+            <div class="stage-indicator">
+                STAGE <span id="current-stage-display">1</span> / 5
+            </div>
+        </div>
+
+        <div class="instruction">
+            FIND THE MISSING NUMBER
+        </div>
+
+        <div class="numbers-grid" id="numbers-grid"></div>
+
+        <div class="options-container" id="options-container"></div>
+
+        <div id="result-message"></div>
+        
+        <div class="control-buttons">
+            <button class="action-btn" onclick="backToMenu()">QUIT TO MENU</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
